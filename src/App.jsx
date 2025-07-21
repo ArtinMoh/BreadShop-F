@@ -112,7 +112,7 @@ function App() {
             Using only the finest ingredients to create fresh, artisanal bread
             for you to enjoy.
           </p>
-          <button className="shop-button">See All Breads Now!</button>
+          <button className="shop-button">See All Breads Now!!</button>
         </main>
 
         <aside id="asideInmain">
