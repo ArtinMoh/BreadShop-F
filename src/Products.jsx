@@ -14,6 +14,8 @@ import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
 
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 //theTags
 import {
   Heading1,
@@ -32,6 +34,18 @@ const Products = ({ onAdd }) => {
   const [slideClass, setSlideClass] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [showFooter, setShowFooter] = useState(true);
+
+  const [fetchedBreads, setFetchedBreads] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/breads")
+      .then((response) => {
+        setFetchedBreads(response.data); // limit to 6 (used in Home (featured Breads))
+      })
+      .catch((error) => {
+        console.error("Error fetching breads:", error);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -178,9 +192,9 @@ const Products = ({ onAdd }) => {
       </div>
 
       <section id="featured-breads">
-        <h2>All Breads</h2>
+        <h2>Featured Breads</h2>
         <div className="featured-grid">
-          {ProductsB.map((bread, index) => (
+          {fetchedBreads.map((bread, index) => (
             <FeaturedBread key={index} bread={bread} />
           ))}
         </div>

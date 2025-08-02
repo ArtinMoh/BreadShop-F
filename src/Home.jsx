@@ -11,6 +11,8 @@ import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
 
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 import ProductsB from "./ProductsB.js";
 // import { style } from "framer-motion/client";
 
@@ -30,6 +32,19 @@ const Home = ({ onAdd }) => {
   const [breadIndex, setBreadIndex] = useState(0);
   const [slideClass, setSlideClass] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // fetchBreads
+  const [fetchedBreads, setFetchedBreads] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/breads")
+      .then((response) => {
+        setFetchedBreads(response.data); // limit to 6 (used in Home (featured Breads))
+      })
+      .catch((error) => {
+        console.error("Error fetching breads:", error);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -211,7 +226,7 @@ const Home = ({ onAdd }) => {
       <section id="featured-breads">
         <h2>Featured Breads</h2>
         <div className="featured-grid">
-          {ProductsB.slice(0, 6).map((bread, index) => (
+          {fetchedBreads.slice(0, 6).map((bread, index) => (
             <FeaturedBread key={index} bread={bread} />
           ))}
         </div>
