@@ -203,6 +203,24 @@ const AboutUs = () => {
           <ItemRenderer />
         </div>
       </div>
+      <div id="contactUs">
+        <div id="contactUsDetailsContainer">
+          <div id="contactUsDetailsHeader">
+            {/* <ParagraphHeading>Have any questions?</ParagraphHeading> */}
+            <ParagraphHeading>The ways to contact us!</ParagraphHeading>
+          </div>
+          <div id="contactUsDetails">
+            <span id="contactUsEmail">
+              <img src="" alt="" />
+              ContactUs@BreadShop.co
+            </span>
+            <span id="contactUsNumber">
+              <img src="" alt="" />
+              +1 555 134 1248
+            </span>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

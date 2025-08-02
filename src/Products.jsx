@@ -24,6 +24,15 @@ import {
   ParagraphFooter,
 } from "./Components/theTags.js";
 
+const flow = {
+  ONINIT: "Init",
+  ONLOADING: "Loading",
+  ONERROR: "Error",
+  ONEMPTY: "Empty",
+  ONSUCCESS: "Success",
+  ONFAILURE: "Failure",
+};
+
 const Products = ({ onAdd }) => {
   const handleAddClick = () => {
     onAdd(); // triggers global drop
@@ -36,16 +45,77 @@ const Products = ({ onAdd }) => {
   const [showFooter, setShowFooter] = useState(true);
 
   const [fetchedBreads, setFetchedBreads] = useState([]);
+
+  const [flowProvider, setFlowProvider] = useState(flow.ONINIT);
+
+  // const getBreads = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:3001/breads");
+
+  //     if (response.data.length === 0) {
+  //       setFlowProvider(flow.ONEMPTY);
+  //     }
+
+  //     if (response.status == 404) {
+  //       setFlowProvider(flow.ONFAILURE);
+  //     }
+
+  //     setFetchedBreads(response.data);
+  //     setFlowProvider(flow.ONSUCCESS);
+  //   } catch (e) {
+  //     console.log(e);
+  //     setFlowProvider(flow.ONERROR);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getBreads();
+  // }, []);
+  const getBreads = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/breads");
+
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          setFlowProvider(flow.ONEMPTY);
+        } else {
+          setFetchedBreads(response.data);
+          setFlowProvider(flow.ONSUCCESS);
+        }
+      } else {
+        setFlowProvider(flow.ONFAILURE);
+      }
+    } catch (e) {
+      console.log("Fetch error:", e);
+      setFlowProvider(flow.ONERROR);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/breads")
-      .then((response) => {
-        setFetchedBreads(response.data); // limit to 6 (used in Home (featured Breads))
-      })
-      .catch((error) => {
-        console.error("Error fetching breads:", error);
-      });
+    getBreads();
   }, []);
+
+  const AlertBox = ({ breadsLoadedStatusMessage }) => {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 400,
+            background: "#fff3f3",
+            padding: 20,
+            borderRadius: 8,
+            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+          }}
+        >
+          <strong style={{ color: "#d8000c" }}>Oops!</strong>
+          <p style={{ marginTop: 10, color: "#d8000c" }}>
+            {breadsLoadedStatusMessage}
+          </p>
+        </div>
+      </div>
+    );
+  };
 
   const navigate = useNavigate();
 
@@ -193,11 +263,24 @@ const Products = ({ onAdd }) => {
 
       <section id="featured-breads">
         <h2>Featured Breads</h2>
-        <div className="featured-grid">
-          {fetchedBreads.map((bread, index) => (
-            <FeaturedBread key={index} bread={bread} />
-          ))}
-        </div>
+
+        {/* 🧠 Alert Logic */}
+        {(flowProvider === flow.ONERROR || flowProvider === flow.ONFAILURE) && (
+          <AlertBox breadsLoadedStatusMessage="Failed to fetch breads. Please try again later." />
+        )}
+
+        {flowProvider === flow.ONEMPTY && (
+          <AlertBox breadsLoadedStatusMessage="No breads available at the moment." />
+        )}
+
+        {/* 🧁 Success State */}
+        {flowProvider === flow.ONSUCCESS && (
+          <div className="featured-grid">
+            {fetchedBreads.map((bread, index) => (
+              <FeaturedBread key={index} bread={bread} />
+            ))}
+          </div>
+        )}
       </section>
     </>
   );
