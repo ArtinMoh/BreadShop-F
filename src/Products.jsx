@@ -8,6 +8,8 @@ import The1stBread from "./assets/images/The1stBread.png";
 import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 
+import ErrorIcon from "./assets/images/Error_Icon.svg";
+
 import ProductsB from "./ProductsB.js";
 
 import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
@@ -73,7 +75,9 @@ const Products = ({ onAdd }) => {
   // }, []);
   const getBreads = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/breads");
+      const response = await axios.get("http://localhost:3001/breads", {
+        timeout: 5000,
+      });
 
       if (response.status === 200) {
         if (response.data.length === 0) {
@@ -105,11 +109,15 @@ const Products = ({ onAdd }) => {
             background: "#fff3f3",
             padding: 20,
             borderRadius: 8,
-            boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+            boxShadow: "rgb(255 104 104 / 38%) 0px 0px 10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <strong style={{ color: "#d8000c" }}>Oops!</strong>
-          <p style={{ marginTop: 10, color: "#d8000c" }}>
+          <img src={ErrorIcon} alt="" style={{ maxWidth: "190px" }} />
+          <strong style={{ color: "rgb(247 148 76)" }}>Oops!</strong>
+          <p style={{ marginTop: 10, color: "rgb(253 167 105)" }}>
             {breadsLoadedStatusMessage}
           </p>
         </div>

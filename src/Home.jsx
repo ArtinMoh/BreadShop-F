@@ -9,6 +9,8 @@ import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
 
+import ErrorIcon from "./assets/images/Error_Icon.svg";
+
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -23,6 +25,15 @@ import {
   ParagraphFooter,
 } from "./Components/theTags.js";
 
+const flow = {
+  ONINIT: "Init",
+  ONLOADING: "Loading",
+  ONERROR: "Error",
+  ONEMPTY: "Empty",
+  ONSUCCESS: "Success",
+  ONFAILURE: "Failure",
+};
+
 const Home = ({ onAdd }) => {
   const handleAddClick = () => {
     onAdd(); // triggers global drop
@@ -33,18 +44,60 @@ const Home = ({ onAdd }) => {
   const [slideClass, setSlideClass] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const [flowProvider, setFlowProvider] = useState(flow.ONINIT);
   // fetchBreads
   const [fetchedBreads, setFetchedBreads] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/breads")
-      .then((response) => {
-        setFetchedBreads(response.data); // limit to 6 (used in Home (featured Breads))
-      })
-      .catch((error) => {
-        console.error("Error fetching breads:", error);
+  const getBreads = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/breads", {
+        timeout: 5000,
       });
+
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          setFlowProvider(flow.ONEMPTY);
+        } else {
+          setFetchedBreads(response.data);
+          setFlowProvider(flow.ONSUCCESS);
+        }
+      } else {
+        setFlowProvider(flow.ONFAILURE);
+      }
+    } catch (e) {
+      console.log("Fetch error:", e);
+      setFlowProvider(flow.ONERROR);
+    }
+  };
+
+  useEffect(() => {
+    getBreads();
   }, []);
+
+  const AlertBox = ({ breadsLoadedStatusMessage }) => {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 400,
+            background: "#fff3f3",
+            padding: 20,
+            borderRadius: 8,
+            boxShadow: "rgb(255 104 104 / 38%) 0px 0px 10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img src={ErrorIcon} alt="" style={{ maxWidth: "190px" }} />
+          <strong style={{ color: "rgb(247 148 76)" }}>Oops!</strong>
+          <p style={{ marginTop: 10, color: "rgb(253 167 105)" }}>
+            {breadsLoadedStatusMessage}
+          </p>
+        </div>
+      </div>
+    );
+  };
 
   const navigate = useNavigate();
 
@@ -225,11 +278,27 @@ const Home = ({ onAdd }) => {
 
       <section id="featured-breads">
         <h2>Featured Breads</h2>
-        <div className="featured-grid">
-          {fetchedBreads.slice(0, 6).map((bread, index) => (
-            <FeaturedBread key={index} bread={bread} />
-          ))}
-        </div>
+
+        {/* 🧠 Alert Logic */}
+        {(flowProvider === flow.ONERROR || flowProvider === flow.ONFAILURE) && (
+          <>
+            <AlertBox breadsLoadedStatusMessage="Failed to fetch breads. Please try again later." />
+            {/* <button onClick={getBreads}>🔄 Try Again</button> // needs optimization and style */}
+          </>
+        )}
+
+        {flowProvider === flow.ONEMPTY && (
+          <AlertBox breadsLoadedStatusMessage="No breads available at the moment." />
+        )}
+
+        {/* 🧁 Success State */}
+        {flowProvider === flow.ONSUCCESS && (
+          <div className="featured-grid">
+            {fetchedBreads.slice(0, 6).map((bread, index) => (
+              <FeaturedBread key={index} bread={bread} />
+            ))}
+          </div>
+        )}
       </section>
     </>
   );
