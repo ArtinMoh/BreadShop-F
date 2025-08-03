@@ -8,6 +8,9 @@ import The1stBread from "./assets/images/The1stBread.png";
 import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 
+import MailIcon from "./assets/images/Mail_Icon.svg";
+import PhoneIcon from "./assets/images/Phone_Icon.svg";
+
 // import ProductsB from "./ProductsB.js";
 
 import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
@@ -91,6 +94,23 @@ const AboutUs = () => {
       once: true,
     });
   }, []);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyClick = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log(`Copied: ${text}`);
+        // Optional: show feedback
+        setCopied(true);
+        setTimeout(() => {
+          setCopied(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Copy failed:", err);
+      });
+  };
 
   useEffect(() => {
     setActiveBar(0);
@@ -210,12 +230,43 @@ const AboutUs = () => {
             <ParagraphHeading>The ways to contact us!</ParagraphHeading>
           </div>
           <div id="contactUsDetails">
-            <span id="contactUsEmail">
-              <img src="" alt="" />
+            <span
+              onClick={() => handleCopyClick("ContactUs@BreadShop.co")}
+              className="contactUsNumberContainer tooltip"
+              id="contactUsEmail"
+              data-tooltip={copied ? "Copied!" : "Click to copy"}
+            >
+              <img className="aboutUsIcons" src={MailIcon} alt="" />
               ContactUs@BreadShop.co
             </span>
-            <span id="contactUsNumber">
-              <img src="" alt="" />
+            <div id="orContainer">
+              <div
+                style={{
+                  background: "gray",
+                  width: "50px",
+                  height: "1px",
+                  alignSelf: "anchor-center",
+                }}
+              ></div>
+              <div style={{ alignSelf: "anchor-center", marginBottom: "3px" }}>
+                or
+              </div>
+              <div
+                style={{
+                  background: "gray",
+                  width: "50px",
+                  height: "1px",
+                  alignSelf: "anchor-center",
+                }}
+              ></div>
+            </div>
+            <span
+              onClick={() => handleCopyClick("+1 555 134 1248")}
+              className="contactUsNumberContainer tooltip"
+              id="contactUsNumber"
+              data-tooltip={copied ? "Copied!" : "Click to copy"}
+            >
+              <img className="aboutUsIcons Tooltip" src={PhoneIcon} alt="" />
               +1 555 134 1248
             </span>
           </div>

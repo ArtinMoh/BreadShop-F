@@ -807,10 +807,35 @@ div#contactUsDetailsHeader{
 div#contactUsDetails {
     display: flex
 ;
-    justify-content: center;
-    gap: 30%;
-    width: 60%;
     margin: 30px 0;
+    width: 100%;
+    justify-content: center;
+    gap: 7%;
+}
+
+.contactUsNumberContainer{
+display: flex
+;
+    align-items: center;
+    gap: 8px;
+    background: #faebd7;
+    padding: 5px 15px;
+    border-radius: 10px;
+    text-wrap-mode: nowrap;
+    transition: 0.1s ease-in-out;
+}
+.contactUsNumberContainer:active{
+    background: #f0d8c2;
+}
+img.aboutUsIcons {
+    height: 34px;
+}
+
+div#orContainer {
+    display: flex
+;
+    flex-direction: row;
+    gap: 10px;
 }
 
 /* Falling bread to the bucket */

@@ -288,7 +288,7 @@ const Home = ({ onAdd }) => {
         )}
 
         {flowProvider === flow.ONEMPTY && (
-          <AlertBox breadsLoadedStatusMessage="No breads available at the moment." />
+          <AlertBox breadsLoadedStatusMessage="No breads available right now. Check back soon!" />
         )}
 
         {/* 🧁 Success State */}
