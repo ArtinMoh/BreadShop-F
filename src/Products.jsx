@@ -107,9 +107,9 @@ const Products = ({ onAdd }) => {
             textAlign: "center",
             maxWidth: 400,
             background: "#fff3f3",
-            padding: 20,
-            borderRadius: 8,
-            boxShadow: "rgb(255 104 104 / 38%) 0px 0px 10px",
+            padding: 28,
+            borderRadius: 0,
+            boxShadow: "rgb(255 104 104 / 38%) 0px 0px 10px", // rgba(255, 104, 104, 0.38) 0px 6px 25px 1px
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
