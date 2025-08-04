@@ -26,6 +26,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import AboutUs from "./AboutUs";
+import Cart from "./Cart";
 
 function App() {
   const [dropCount, setDropCount] = useState(0);
@@ -53,6 +54,7 @@ function App() {
             element={<Products onAdd={handleAddClick} />}
           />
           <Route path="/About-Us" element={<AboutUs />} />
+          <Route path="/Cart" element={<Cart />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <BreadFooter />

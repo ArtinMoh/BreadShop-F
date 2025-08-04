@@ -25,7 +25,8 @@ const BreadHeader = () => {
           About Us
         </li>
         <li
-          data-tooltip="See Your Card"
+          onClick={() => navigate("/Cart")}
+          data-tooltip="See Your Cart"
           id="bucket"
           className="headerItems-li tooltip-small-bottom"
         >
