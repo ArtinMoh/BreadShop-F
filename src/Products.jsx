@@ -101,7 +101,10 @@ const Products = ({ onAdd }) => {
 
   const AlertBox = ({ breadsLoadedStatusMessage }) => {
     return (
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
+      <div
+        className="errorMessageBox"
+        style={{ display: "flex", justifyContent: "center", marginTop: 50 }}
+      >
         <div
           style={{
             textAlign: "center",

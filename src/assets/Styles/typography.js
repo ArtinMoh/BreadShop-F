@@ -8,6 +8,7 @@ export const typography = {
     font-family: "instrumentSans-semibold", sans-serif;
     font-size: 3rem;
     margin: 20px 0;
+    white-space: nowrap;
   `,
   /** font-family: instrumentSans-semibold, sans-serif;
     font-size: 2.2rem;
