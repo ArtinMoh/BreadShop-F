@@ -932,8 +932,13 @@ div#selectedBreadsContainer {
     gap: 6px;
     min-height: 65px;
     height: auto;
-    width: 100vw;
+    width: 85vw;
     box-sizing: border-box;
+    background: #ffffffc4;
+    border: 2px solid white;
+    border-radius: 200px;
+    justify-self: anchor-center;
+    top: 25px;
   }
   header img {
     width: 45px;
@@ -947,8 +952,8 @@ div#selectedBreadsContainer {
   #headerItems {
     flex-direction: row;
     gap: 10px;
-    font-size: 1rem;
-    margin-left: 4px;
+    font-size: 3.6vw;
+    margin-left: 1px;
   }
 
   #mainsContainer{
@@ -989,6 +994,9 @@ div#selectedBreadsContainer {
   }
  #selectedBreads{
   padding: 0;
+ }
+ .tooltip-small-bottom::after{
+  visibility: hidden;
  }
  div#selectedBreadsContainer{
   padding: 30px 15px;
