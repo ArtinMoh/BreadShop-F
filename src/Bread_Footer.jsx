@@ -15,6 +15,16 @@ const BreadFooter = () => {
           <div id="footerTextforlogo">
             <p>© 2025 Bread Shop. All rights reserved.</p>
           </div>
+          <div
+            id="footerDividerSmallWidth"
+            style={{
+              display: "none",
+              width: "65%",
+              height: "1px",
+              placeSelf: "center",
+              background: "gray",
+            }}
+          ></div>
           <div id="footerLinks">
             <ul>
               <li>

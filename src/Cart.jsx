@@ -11,6 +11,8 @@ import BreadImg3 from "./assets/images/BreadImg3.png";
 import MailIcon from "./assets/images/Mail_Icon.svg";
 import PhoneIcon from "./assets/images/Phone_Icon.svg";
 
+import emptyCartImg from "./assets/images/emptyCart_Icon.svg";
+
 // import ProductsB from "./ProductsB.js";
 
 import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
@@ -90,7 +92,26 @@ const Cart = () => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
   };
-
+  const EmptyCart = () => {
+    return (
+      <>
+        <img
+          style={{
+            width: "100%",
+            height: "130px",
+            filter: "grayscale(1) opacity(0.95)",
+          }}
+          src={emptyCartImg}
+          alt=""
+        />
+        <div className="selectedBreadInfo selectedBreadInfoEmpty">
+          <ParagraphFooter>
+            You didn't pick a bread / Cart is empty
+          </ParagraphFooter>
+        </div>
+      </>
+    );
+  };
   return (
     <>
       <div id="mainsContainer" style={{ height: "0" }}>
@@ -133,12 +154,7 @@ const Cart = () => {
       <div id="selectedBreads">
         <div id="selectedBreadsContainer">
           <div className="selectedBreadItem">
-            <img src="" alt="" />
-            <div className="selectedBreadInfo selectedBreadInfoEmpty">
-              <ParagraphFooter>
-                You didn't pick a bread / Cart is empty
-              </ParagraphFooter>
-            </div>
+            <EmptyCart />
           </div>
         </div>
       </div>

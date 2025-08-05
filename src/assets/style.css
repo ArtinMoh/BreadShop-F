@@ -966,6 +966,9 @@ div#selectedBreadsContainer {
   #selectedBreads{
     margin: 15px auto 40px auto;
   }
+  .selectedBreadItem img {
+    height: 125px !important;
+  }
   main {
     width: 80%;
   }
@@ -1026,6 +1029,9 @@ div#selectedBreadsContainer {
     /* padding: 18px 6px; */
     gap: 10px;
     border-radius: 16px;
+  }
+  #footerDividerSmallWidth{
+    display: block !important;
   }
   #footerLinks > ul{
     list-style: none;
