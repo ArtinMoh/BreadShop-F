@@ -64,7 +64,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 200vh;
+  min-height: 110vh;
   overflow-x: hidden;
   overflow-y: auto;
   /* font-family: sans-serif; */
@@ -936,8 +936,8 @@ div#selectedBreadsContainer {
     box-sizing: border-box;
   }
   header img {
-    width: 40px;
-    height: 30px;
+    width: 45px;
+    height: 35px;
   }
   header > div {
     width: 2px;
@@ -950,9 +950,21 @@ div#selectedBreadsContainer {
     font-size: 1rem;
     margin-left: 4px;
   }
+
+  #mainsContainer{
+    min-height: 50vh;
+  }
+
+  #featured-breads{
+    margin: 45px auto 40px auto;
+  }
+
   li#bucket {
     right: 2%;
     position: absolute;
+  }
+  #selectedBreads{
+    margin: 15px auto 40px auto;
   }
   main {
     width: 80%;
@@ -966,6 +978,7 @@ div#selectedBreadsContainer {
   }
   main > .shop-button{
     font-size: 1.1rem;
+    text-wrap-mode: nowrap;
 
   }
   #asideImgContainer{
@@ -976,6 +989,10 @@ div#selectedBreadsContainer {
  }
  div#selectedBreadsContainer{
   padding: 30px 15px;
+ }
+
+ #breadMapBg{
+  margin: 50px auto 40px auto;
  }
 
   footer {
