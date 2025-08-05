@@ -22,7 +22,8 @@ const BreadFooter = () => {
               width: "65%",
               height: "1px",
               placeSelf: "center",
-              background: "gray",
+              background: "#e0c4a8",
+              borderRadius: "100px",
             }}
           ></div>
           <div id="footerLinks">
