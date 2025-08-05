@@ -932,11 +932,11 @@ div#selectedBreadsContainer {
     gap: 6px;
     min-height: 65px;
     height: auto;
-    width: 90vw; /* 85vw */
+    width: 86vw; /* 90vw */
     box-sizing: border-box;
     background: #ffffffc4;
     border: 2px solid white;
-    border-radius: 200px;
+    border-radius: 300px;
     justify-self: anchor-center;
     top: 20px;
   }
@@ -988,6 +988,9 @@ div#selectedBreadsContainer {
     font-size: 1.1rem;
     text-wrap-mode: nowrap;
 
+  }
+  #asideInmain{
+    min-height: 57vh;
   }
   #asideImgContainer{
     display: none;
