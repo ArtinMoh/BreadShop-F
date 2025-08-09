@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import XIcon from "./assets/images/SocialMedia-Icons/X.svg";
 import InstagramIcon from "./assets/images/SocialMedia-Icons/Instagram.svg";
 import BreadShopLogo from "./assets/images/BreadShop - Logo.svg";
 
 const BreadFooter = () => {
+  const navigate = useNavigate();
+
   return (
     <footer>
       <div id="footerContainer">
@@ -29,10 +32,20 @@ const BreadFooter = () => {
           <div id="footerLinks">
             <ul>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a
+                  onClick={() => navigate("/PrivacyPolicy")}
+                  style={{ cursor: "pointer" }}
+                >
+                  Privacy Policy
+                </a>
               </li>
               <li>
-                <a href="#">Terms of Service</a>
+                <a
+                  onClick={() => navigate("/TermsofService")}
+                  style={{ cursor: "pointer" }}
+                >
+                  Terms of Service
+                </a>
               </li>
               <li>
                 <a href="#">Contact Us</a>

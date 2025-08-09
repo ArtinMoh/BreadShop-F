@@ -31,6 +31,20 @@ export const typography = {
     font-weight: 100;
   `,
   /** font-family: instrumentSans-medium, sans-serif;
+    font-size: 1.4rem;
+    gap: 8px;
+    color: rgb(210, 105, 30);
+    background-color: rgb(255, 243, 224);
+    font-weight: bold; */
+    smallL: css`
+    font-family: instrumentSans-medium, sans-serif;
+    font-size: 1.4rem;
+    gap: 8px;
+    color: rgb(210, 105, 30);
+    background-color: rgb(255, 243, 224);
+    font-weight: bold;
+  `,
+  /** font-family: instrumentSans-medium, sans-serif;
     font-size: 1rem;
     gap: 8px; */
   small: css`

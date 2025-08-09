@@ -31,6 +31,7 @@ import {
   Heading2,
   ParagraphHeading,
   ParagraphFooter,
+  Button,
 } from "./Components/theTags.js";
 
 const Cart = () => {
@@ -157,6 +158,7 @@ const Cart = () => {
             <EmptyCart />
           </div>
         </div>
+        <Button onClick={() => navigate("/Login")}>Login</Button>
       </div>
     </>
   );
