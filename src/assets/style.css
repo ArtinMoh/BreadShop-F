@@ -1295,7 +1295,7 @@ section#privacyPolicyContentContainer {
     width: 100%;
     /* padding: 18px 6px; */
     gap: 10px;
-    border-radius: 16px;
+    border-radius: 20px;
   }
   #footerDividerSmallWidth{
     display: block !important;
