@@ -975,7 +975,7 @@ form#form {
     background: linear-gradient(45deg, #ffffff, transparent);
     border: #ffffff 2px solid;
     border-radius: 100px;
-    padding: 8px 20px;
+    padding: 8px 15px;
     margin-top: 10px;
 }
 .infoInputs:focus {
@@ -1397,8 +1397,8 @@ section#privacyPolicyContentContainer {
     width: 70%;
   }
   input#username{
-    width: 99%;
-    padding: 8px 0px;
+    width: 87%;
+    padding: 8px 15px;
   }
   #loginPanel{
     margin: 10px auto 40px auto;
