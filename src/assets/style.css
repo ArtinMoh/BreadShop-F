@@ -1190,6 +1190,9 @@ section#privacyPolicyContentContainer {
     height: 1px;
     width: 45px;
   }
+  div#login\&signUpContainer{
+    padding: 0 10px;
+  }
 }
 
 /* Responsive for small screens */
