@@ -1192,6 +1192,7 @@ section#privacyPolicyContentContainer {
   }
   div#login\&signUpContainer{
     padding: 0 10px;
+    background: #fffbf4;
   }
 }
 
