@@ -1398,10 +1398,13 @@ section#privacyPolicyContentContainer {
   }
   input#username{
     width: 99%;
-    padding: 15px 0px;
+    padding: 8px 0px;
   }
   #loginPanel{
     margin: 10px auto 40px auto;
+  }
+  #showPassword{
+    padding: 0% 20px;
   }
 }
 
