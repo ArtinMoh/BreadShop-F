@@ -893,6 +893,7 @@ div#selectedBreadsContainer {
 }
 #loginPanel{
   width: 60%;
+  max-width: 1000px;
   margin: 60px auto 40px auto;
   padding: 30px 15px;
   display: flex;
@@ -1177,6 +1178,18 @@ section#privacyPolicyContentContainer {
   .step.step--large {
     aspect-ratio: auto;
   }
+  div#formContainer{
+    flex-direction: column;
+  }
+  div#loginPanelDividerContainer{
+    gap: 10px;
+    padding: 15px;
+    flex-direction: row;
+  }
+  div#loginPanelDividerContainer div{
+    height: 1px;
+    width: 45px;
+  }
 }
 
 /* Responsive for small screens */
@@ -1252,7 +1265,7 @@ section#privacyPolicyContentContainer {
     display: none;
   }
  #selectedBreads{
-  padding: 0;
+    padding: 30px 0px;
  }
  .tooltip-small-bottom::after{
   visibility: hidden;
@@ -1380,6 +1393,16 @@ section#privacyPolicyContentContainer {
   #termsOfServiceContainer{
     padding: 30px 0px;
   }
+  #loginPanel{
+    width: 70%;
+  }
+  input#username{
+    width: 99%;
+    padding: 15px 0px;
+  }
+  #loginPanel{
+    margin: 10px auto 40px auto;
+  }
 }
 
 /* Responsive for small screens */
@@ -1402,6 +1425,13 @@ section#privacyPolicyContentContainer {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(12, 320px);
     gap: 14px;
+  }
+  .auth-box{
+    place-self: center;
+    width: 85%;
+  }
+  #loginPanel{
+    width: 75%;
   }
 }
 

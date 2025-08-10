@@ -23,7 +23,7 @@ export const ParagraphFooter = styled.p`
   color: ${colors.textDark};
 `;
 /** Used as Paragraph (p) in site's body for footer or something else. font size between small and medium, color: none */
-export const ParagraphFooterL = styled.p`
+export const ParagraphFooterL = styled.h3`
   ${typography.smallL};
 `;
 
