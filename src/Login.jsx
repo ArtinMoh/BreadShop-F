@@ -37,6 +37,17 @@ import {
   Button,
 } from "./Components/theTags.js";
 
+//Formik and Yup
+import { useFormik } from "formik";
+import * as Yup from "yup";
+const validationSchema = Yup.object({
+  username: Yup.string().required("Username is required."),
+  password: Yup.string()
+    .required("Password is required.")
+    .min(6, "Password must be at least 6 characters.")
+    .max(20, "Password must be at most 20 characters."),
+});
+
 const Login = () => {
   const scrollBarsRef = useRef([]);
   const breadImages = [The1stBread, BreadImg2, BreadImg3];
@@ -46,6 +57,55 @@ const Login = () => {
   const [showFooter, setShowFooter] = useState(true);
 
   const navigate = useNavigate();
+
+  // Form validation state
+  // const [formData, setFormData] = useState({
+  //   username: "",
+  //   password: "",
+  // });
+
+  // const [formErrors, setFormErrors] = useState({
+  //   username: "",
+  //   password: "",
+  // });
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prev) => ({ ...prev, [name]: value }));
+  //   setFormErrors((prev) => ({ ...prev, [name]: "" })); // Clear error on change
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const errors = {};
+
+  //   if (!formData.username.trim()) {
+  //     errors.username = "Username is required.";
+  //   }
+
+  //   if (!formData.password.trim()) {
+  //     errors.password = "Password is required.";
+  //   }
+
+  //   if (Object.keys(errors).length > 0) {
+  //     setFormErrors(errors);
+  //     return;
+  //   }
+
+  //   // Proceed with login logic
+  //   console.log("Logging in with:", formData);
+  // };
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Logging in with:", values);
+      // Add login logic here
+    },
+  });
 
   return (
     <>
@@ -75,11 +135,15 @@ const Login = () => {
       </div>
       <div id="loginPanel">
         <div id="loginPanelContainer">
-          <div id="login&signUpContainer">
+          {/* <div id="login&signUpContainer">
             <div id="login&signUpBg">
-              <div id="loginSection" className="loginandsignUpButtonsActive">
+              <input
+                type="submit"
+                id="loginSection"
+                className="loginandsignUpButtonsActive"
+              >
                 Continue
-              </div>
+              </input>
               <div
                 id="signUpSection"
                 className="loginandsignUpButtonsNotActive"
@@ -87,28 +151,73 @@ const Login = () => {
                 Sign Up
               </div>
             </div>
-          </div>
-          <form id="form">
+          </div> */}
+
+          <form id="form" onSubmit={formik.handleSubmit}>
             <div id="formContainer">
               <div className="LoginInfo">
                 <div className="LoginInfoInputAndTexts">
-                  <div style={{ marginLeft: "8px" }}>Username:</div>
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    className="infoInputs"
-                  />
+                  <div
+                    id="usernameContainer"
+                    data-tooltip={
+                      formik.touched.username && formik.errors.username
+                        ? formik.errors.username
+                        : ""
+                    }
+                    className={
+                      formik.touched.username && formik.errors.username
+                        ? "tooltip"
+                        : ""
+                    }
+                  >
+                    <div style={{ marginLeft: "8px" }}>Username:</div>
+                    <input
+                      style={
+                        formik.touched.username && formik.errors.username
+                          ? { border: "2px solid red" }
+                          : {}
+                      }
+                      type="text"
+                      name="username"
+                      id="username"
+                      className="infoInputs"
+                      value={formik.values.username}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </div>
                 </div>
+
                 <div className="LoginInfoInputAndTexts">
                   <div style={{ marginLeft: "8px" }}>Password:</div>
-                  <div id="passwordContainer">
+                  <div
+                    id="passwordContainer"
+                    data-tooltip={
+                      formik.touched.password && formik.errors.password
+                        ? formik.errors.password
+                        : ""
+                    }
+                    className={
+                      formik.touched.password && formik.errors.password
+                        ? "tooltip"
+                        : ""
+                    }
+                  >
                     <input
+                      style={
+                        formik.touched.password && formik.errors.password
+                          ? { border: "2px solid red" }
+                          : {}
+                      }
                       type="password"
                       name="password"
                       id="password"
                       className="infoInputs"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+
                     <button
                       style={{ cursor: "pointer" }}
                       type="button"
@@ -121,7 +230,7 @@ const Login = () => {
                         if (passwordInput.type === "password") {
                           passwordInput.type = "text";
                           showPasswordIcon.src = ShowPasswordAfter_Icon;
-                        } else {
+                        } else if (passwordInput.type === "text") {
                           passwordInput.type = "password";
                           showPasswordIcon.src = ShowPassword_Icon;
                         }
@@ -136,11 +245,13 @@ const Login = () => {
                   </div>
                 </div>
               </div>
+
               <div id="loginPanelDividerContainer">
                 <div id="loginPanelDivider"></div>
                 <div style={{ display: "contents" }}>or</div>
                 <div id="loginPanelDivider"></div>
               </div>
+
               <div className="LoginInfoThirds">
                 <div className="auth-box">
                   <button className="auth-btn auth-google">
@@ -158,6 +269,28 @@ const Login = () => {
                     />
                     Continue with Microsoft
                   </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="login&signUpContainer">
+              <div id="login&signUpBg">
+                <label
+                  htmlFor="loginSection"
+                  className="loginandsignUpButtonsActive"
+                >
+                  Continue
+                </label>
+                <input
+                  type="submit"
+                  id="loginSection"
+                  style={{ display: "none" }}
+                />
+                <div
+                  id="signUpSection"
+                  className="loginandsignUpButtonsNotActive"
+                >
+                  Sign Up
                 </div>
               </div>
             </div>

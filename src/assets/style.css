@@ -930,6 +930,8 @@ div#login\&signUpContainer {
     background: #fff3e0;
     border-radius: 100px;
     height: 55px;
+    align-self: center;
+    margin-top: 20px;
 }
 #signUpBg{
   background: #fff3e0;
@@ -1148,6 +1150,22 @@ section#privacyPolicyContentContainer {
   /* width: 40%;
   height: 1px;
   background: gray; */
+}
+
+
+div#breadInfo {
+    width: 90%;
+    margin: 60px auto 40px auto;
+    padding: 20px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08);
+    font-size: 18px;
 }
 
 /* Responsive adjustments */
@@ -1410,6 +1428,12 @@ section#privacyPolicyContentContainer {
   #showPassword{
     padding: 0% 20px;
   }
+  div#breadInfo{
+    padding: 20px 0;
+  }
+  div#breadInfo span{
+    width: 85%;
+  }
 }
 
 /* Responsive for small screens */
@@ -1468,4 +1492,34 @@ section#privacyPolicyContentContainer {
     transform: translateX(-100px);
     opacity: 0;
   }
+}
+
+/* ===== Login inputs alignment fixes (overrides) ===== */
+div#passwordContainer {
+  align-items: center;
+  gap: 8px;
+}
+
+.infoInputs,
+#showPassword {
+  height: 42px;
+  box-sizing: border-box;
+}
+
+#showPassword {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px; /* keep width while matching height */
+  /* margin-top: 0;  prevent row height increase */
+}
+
+#showPassword img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Remove top margin from input inside the password row for perfect vertical alignment */
+div#passwordContainer .infoInputs {
+  /* margin-top: 0; */
 }

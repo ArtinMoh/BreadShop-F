@@ -29,6 +29,8 @@ import {
   Heading2,
   ParagraphHeading,
   ParagraphFooter,
+  ParagraphFooterL,
+  Button,
 } from "./Components/theTags.js";
 
 const ItemRenderer = () => {
@@ -205,6 +207,14 @@ const AboutUs = () => {
             style={{ cursor: i === 0 || i === 2 ? "pointer" : "default" }}
           ></span>
         ))}
+      </div>
+      <div id="breadInfo">
+        <span>
+          Welcome to BreadShop! Choose the product or type of bread you want,
+          and wait a little while for one of our bakeries to accept your request
+          and start baking your custom order. Then, in less than an hour,
+          receive your freshly baked bread from our dedicated delivery courier!
+        </span>
       </div>
       <div id="breadMapBg">
         <div id="breadMapContainer">

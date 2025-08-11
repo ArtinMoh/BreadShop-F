@@ -41,6 +41,6 @@ export const Button = styled.button`
     &:active {
         opacity: 0.9;
     border: 2px solid #ff6a0090;
-    border-radius: 10px;
+    border-radius: 0px;
     }
 `;
