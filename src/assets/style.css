@@ -1168,6 +1168,49 @@ div#breadInfo {
     font-size: 18px;
 }
 
+div#searchBarContainer {
+    position: fixed;
+    bottom: 5%;
+    display: flex
+;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+}
+div#searchInputContainer {
+    background: linear-gradient(45deg, #ffffff, transparent);
+    padding: 2px;
+    border-radius: 200px;
+    box-shadow: 0px 4px 11px -3px #0000001f;
+}
+input#searchInput {
+    height: 55px;
+    width: 100%;
+    border-radius: 200px;
+    padding: 5px 25px;
+    z-index: 10000;
+    border: none;
+    background: linear-gradient(45deg, #fca26070, #ffffff3d);
+    backdrop-filter: blur(15px);
+    font-size: 1rem;
+    font-family: instrumentSans-medium, sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    transition:  background 0.8s ease-in-out, border 0s ease-in-out, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+input#searchInput:focus {
+    width: 200%;
+    outline: none;
+    background: #ffffff;
+    border: 2px solid #f69148;
+    text-align: center;
+}
+/* input#searchInput:placeholder-shown {
+    border: 2px solid orange;
+} */
+
 /* Responsive adjustments */
 @media (max-width: 1150px) {
   #breadMapContainer {

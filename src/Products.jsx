@@ -36,6 +36,32 @@ const flow = {
 };
 
 const Products = ({ onAdd }) => {
+  //
+  // State for search functionality
+  //
+  const [searchTerm, setSearchTerm] = useState("");
+  const [breads, setBreads] = useState([]);
+  useEffect(() => {
+    const q = searchTerm.trim().toLowerCase();
+    if (q === "") return;
+
+    const fetchBreads = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/breads");
+        const filtered = response.data.filter((bread) =>
+          bread.name.toLowerCase().startsWith(q)
+        );
+        setBreads(filtered);
+      } catch (error) {
+        console.error("Error fetching breads:", error);
+      }
+    };
+
+    fetchBreads();
+  }, [searchTerm]);
+
+  //
+
   const handleAddClick = () => {
     onAdd(); // triggers global drop
   };
@@ -243,6 +269,12 @@ const Products = ({ onAdd }) => {
     );
   }
 
+  const breadsToShow = searchTerm.trim()
+    ? breads.filter((bread) =>
+        bread.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+      )
+    : fetchedBreads;
+
   return (
     <>
       <div id="mainsContainer" style={{ height: "0" }}>
@@ -285,14 +317,60 @@ const Products = ({ onAdd }) => {
         )}
 
         {/* 🧁 Success State */}
-        {flowProvider === flow.ONSUCCESS && (
-          <div className="featured-grid">
-            {fetchedBreads.map((bread, index) => (
-              <FeaturedBread key={index} bread={bread} />
-            ))}
-          </div>
-        )}
+        {flowProvider === flow.ONSUCCESS &&
+          (breadsToShow.length === 0 ? (
+            <div
+              className="errorMessageBox"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 50,
+              }}
+            >
+              <div
+                style={{
+                  textAlign: "center",
+                  maxWidth: "400px",
+                  background: "rgb(255, 243, 243)",
+                  padding: "28px",
+                  borderRadius: "0px",
+                  boxShadow: "rgba(255, 104, 104, 0.38) 0px 0px 10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  filter: "grayscale(1)",
+                }}
+              >
+                <img
+                  alt=""
+                  src="/BreadShop-F/src/assets/images/SearchNotFound_Icon.svg"
+                  style={{ maxWidth: "190px" }}
+                />
+                <strong style={{ color: "rgb(247, 148, 76)" }}>Oops!</strong>
+                <p style={{ marginTop: "10px", color: "rgb(253, 167, 105)" }}>
+                  The bread not found.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="featured-grid">
+              {breadsToShow.map((bread, index) => (
+                <FeaturedBread key={index} bread={bread} />
+              ))}
+            </div>
+          ))}
       </section>
+      <div id="searchBarContainer">
+        <div id="searchInputContainer">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search for breads..."
+            id="searchInput"
+          />
+        </div>
+      </div>
     </>
   );
 };
