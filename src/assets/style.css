@@ -1187,7 +1187,7 @@ div#searchInputContainer {
 }
 input#searchInput {
     height: 55px;
-    width: 100%;
+    width: 55px;
     border-radius: 200px;
     padding: 5px 25px;
     z-index: 10000;
@@ -1201,7 +1201,7 @@ input#searchInput {
     transition:  background 0.8s ease-in-out, border 0s ease-in-out, width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 input#searchInput:focus {
-    width: 200%;
+    width: 450px;
     outline: none;
     background: #ffffff;
     border: 2px solid #f69148;
