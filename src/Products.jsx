@@ -187,6 +187,7 @@ const Products = ({ onAdd }) => {
       (entries) => {
         entries.forEach((entry) => {
           setActiveBar(entry.isIntersecting ? 2 : 1);
+          searchBarContainer.style.opacity = entry.isIntersecting ? "0" : "";
         });
       },
       { threshold: 0.2 }
