@@ -9,7 +9,7 @@ import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 
 import ErrorIcon from "./assets/images/Error_Icon.svg";
-import SearchIcon from "./assets/images/Search_Icon.svg";
+import SearchIcon from "./assets/images/Search_Icon.png";
 
 import ProductsB from "./ProductsB.js";
 
