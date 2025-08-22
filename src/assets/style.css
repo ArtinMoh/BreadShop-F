@@ -1184,6 +1184,7 @@ div#searchInputContainer {
     padding: 2px;
     border-radius: 200px;
     box-shadow: 0px 4px 11px -3px #0000001f;
+    position: relative;
 }
 input#searchInput {
     height: 55px;
@@ -1210,6 +1211,33 @@ input#searchInput:focus {
 /* input#searchInput:placeholder-shown {
     border: 2px solid orange;
 } */
+
+#searchIcon{
+  /* width: 22px;
+  height: 22px;
+  object-fit: contain;
+  vertical-align: middle; */
+  position: absolute;
+  z-index: 1;
+  height: 60%;
+  place-self: anchor-center;
+}
+
+/* Hide icon when active or when input has content */
+div#searchInputContainer.active #searchIcon,
+input#searchInput:not(:placeholder-shown) ~ #searchIcon {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+/* Expand input when container is active (in addition to :focus) */
+div#searchInputContainer.active input#searchInput {
+  width: 450px;
+  background: #ffffff;
+  border: 2px solid #f69148;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 1150px) {
@@ -1506,6 +1534,9 @@ input#searchInput:focus {
   }
   #loginPanel{
     width: 75%;
+  }
+  div#searchInputContainer.active input#searchInput {
+    width: 80vw;
   }
 }
 

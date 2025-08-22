@@ -9,6 +9,7 @@ import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 
 import ErrorIcon from "./assets/images/Error_Icon.svg";
+import SearchIcon from "./assets/images/Search_Icon.svg";
 
 import ProductsB from "./ProductsB.js";
 
@@ -40,6 +41,8 @@ const Products = ({ onAdd }) => {
   // State for search functionality
   //
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const searchInputRef = useRef(null);
   const [breads, setBreads] = useState([]);
   useEffect(() => {
     const q = searchTerm.trim().toLowerCase();
@@ -275,6 +278,27 @@ const Products = ({ onAdd }) => {
       )
     : fetchedBreads;
 
+  const handleSearchContainerClick = () => {
+    setIsSearchActive(true);
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+
+  const handleSearchBlur = () => {
+    if (searchTerm.trim() === "") {
+      setIsSearchActive(false);
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    if (value.trim() !== "") {
+      setIsSearchActive(true);
+    }
+  };
+
   return (
     <>
       <div id="mainsContainer" style={{ height: "0" }}>
@@ -361,13 +385,22 @@ const Products = ({ onAdd }) => {
           ))}
       </section>
       <div id="searchBarContainer">
-        <div id="searchInputContainer">
+        <div
+          id="searchInputContainer"
+          className={isSearchActive ? "active" : ""}
+          onClick={handleSearchContainerClick}
+        >
+          <img id="searchIcon" src={SearchIcon} alt="" />
           <input
             type="text"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for breads..."
+            onChange={handleSearchChange}
+            placeholder={isSearchActive ? "Search for breads..." : ""}
             id="searchInput"
+            ref={searchInputRef}
+            onFocus={() => setIsSearchActive(true)}
+            onBlur={handleSearchBlur}
+            aria-label="Search for breads"
           />
         </div>
       </div>
