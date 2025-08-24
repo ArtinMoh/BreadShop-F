@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BreadShopLogo from "./assets/images/BreadShop - Logo.svg";
 import theBucket from "./assets/images/Header-Icons/BreadShop - Bucket.svg";
@@ -9,9 +9,20 @@ import breadImg2 from "./assets/images/Header-Icons/BreadShop - Bread2.svg";
 /** Bread Header Component */
 const BreadHeader = () => {
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header>
+    <header className={isScrolled ? 'scrolled' : ''}>
       <img src={BreadShopLogo} alt="BreadShop" />
       <div></div>
       <ul id="headerItems">

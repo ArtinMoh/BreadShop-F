@@ -1297,13 +1297,22 @@ div#searchInputContainer.active input#searchInput {
     gap: 6px;
     min-height: 65px;
     height: auto;
-    width: 86vw; /* 95vw */
+    width: 100vw;
     box-sizing: border-box;
     background: #ffffffc4;
-    box-shadow: 0px 7px 30px -18px #00000073;
+    box-shadow: 0;
     border: 2px solid white;
-    border-radius: 300px;
+    border-radius: 0;
     justify-self: anchor-center;
+    top: 10px;
+    transition: all 0.3s ease;
+  }
+
+  /* Mobile header when scrolled down */
+  header.scrolled {
+    width: 86vw;
+    border-radius: 300px;
+    box-shadow: 0px 7px 30px -18px #00000073;
     top: 20px;
   }
   header img {
