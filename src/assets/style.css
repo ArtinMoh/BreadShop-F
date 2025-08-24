@@ -1186,6 +1186,7 @@ div#searchInputContainer {
     border-radius: 200px;
     box-shadow: 0px 4px 11px -3px #0000001f;
     position: relative;
+    cursor: pointer;
 }
 input#searchInput {
     height: 55px;
@@ -1229,6 +1230,7 @@ div#searchInputContainer.active #searchIcon,
 input#searchInput:not(:placeholder-shown) ~ #searchIcon {
   opacity: 0;
   transform: scale(0.7);
+  z-index: -1;
   transition: opacity .2s ease, transform .2s ease;
 }
 
@@ -1295,9 +1297,10 @@ div#searchInputContainer.active input#searchInput {
     gap: 6px;
     min-height: 65px;
     height: auto;
-    width: 86vw; /* 90vw */
+    width: 86vw; /* 95vw */
     box-sizing: border-box;
     background: #ffffffc4;
+    box-shadow: 0px 7px 30px -18px #00000073;
     border: 2px solid white;
     border-radius: 300px;
     justify-self: anchor-center;
@@ -1315,7 +1318,7 @@ div#searchInputContainer.active input#searchInput {
   #headerItems {
     flex-direction: row;
     gap: 10px;
-    font-size: 3.6vw;
+    font-size: 2.6vw;
     margin-left: 1px;
   }
 
@@ -1538,6 +1541,9 @@ div#searchInputContainer.active input#searchInput {
   }
   div#searchInputContainer.active input#searchInput {
     width: 80vw;
+  }
+  #headerItems{
+    font-size: 3.6vw;
   }
 }
 
