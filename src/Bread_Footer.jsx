@@ -82,7 +82,7 @@ const BreadFooter = () => {
               data-tooltip="Instagram: @BreadShop"
               href="http://google.com"
             >
-              <img src={InstagramIcon} alt="Instagram" />
+              <img src={InstagramIcon} alt="Instagram" style={{scale: "1.1"}} />
             </a>
           </div>
         </div>
