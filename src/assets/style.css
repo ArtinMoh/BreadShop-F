@@ -90,7 +90,7 @@ header {
   min-height: 60px;
   height: auto;
   position: fixed; /* Ensure header stays on top */
-  top: 0; /* Stick to top */
+  top: 0px; /* Stick to top */
   left: 0;
   padding: 10px 10px 10px 40px;
   gap: 10px;
