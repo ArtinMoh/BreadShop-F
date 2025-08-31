@@ -8,6 +8,7 @@ import The1stBread from "./assets/images/The1stBread.png";
 import BreadImg2 from "./assets/images/BreadImg2.png";
 import BreadImg3 from "./assets/images/BreadImg3.png";
 import EllipseBlurinmain from "./assets/images/Ellipse (Blur in main).svg";
+import MYO from "./assets/images/MYO.png";
 
 import ErrorIcon from "./assets/images/Error_Icon.svg";
 
@@ -297,7 +298,23 @@ const Home = ({ onAdd }) => {
         {/* 🧁 Success State */}
         {flowProvider === flow.ONSUCCESS && (
           <div className="featured-grid">
-            {fetchedBreads.slice(0, 6).map((bread, index) => (
+            <div id="featured-item-myo">
+              <img src={MYO} alt="" className="featured-image" />
+              <div id="featured-overlay-myo">
+                <div id="featured-buttons-myo">
+                  <button
+                    className="featured-buttonMore-info-myo more-info "
+                    style={{
+                      background:
+                        "linear-gradient(157deg, #f69148, #f69148, #ff6a0090)",
+                    }}
+                  >
+                    Make your own
+                  </button>
+                </div>
+              </div>
+            </div>
+            {fetchedBreads.slice(0, 5).map((bread, index) => (
               <FeaturedBread key={index} bread={bread} />
             ))}
           </div>
