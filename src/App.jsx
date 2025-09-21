@@ -30,6 +30,7 @@ import Cart from "./Cart";
 import Login from "./Login";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsofService from "./TermsofService";
+import MakeYourOwn from "./MakeYourOwn";
 
 function App() {
   const [dropCount, setDropCount] = useState(0);
@@ -61,6 +62,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/TermsofService" element={<TermsofService />} />
+          <Route path="/MakeYourOwn" element={<MakeYourOwn />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <BreadFooter />

@@ -1304,6 +1304,82 @@ div#searchInputContainer.active input#searchInput {
 }
 
 
+
+#MYOContainer {
+    display: flex
+;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+#MYOContent {
+    width: 90%;
+    margin: 60px auto 40px auto;
+    padding: 30px 15px;
+    display: flex
+;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.08);
+    justify-content: space-around;
+}
+.MYOcheckBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.MYOcheckBox:hover{
+  opacity: 0.9;
+}
+.MYOItems-unchecked{
+  border: 2px solid black;
+}
+.MYOItems-checked{
+  background-color: rgb(255, 243, 224);
+  border: 2px solid black;
+  border-radius: 100%;
+}
+.MYOcheckBoxRadio {
+    background-color: black;
+    width: 13px;
+    height: 0px;
+    display: block;
+    border-radius: 100px;
+    place-self: center;
+    transition: 200ms linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%);
+    opacity: 0;
+}
+.MYOcheckBoxRadioTrue{
+  width: 10px !important;
+  height: 10px !important;
+  opacity: 1 !important;
+}
+
+[id^="MYOTheItem-"] {
+      display: flex
+;
+    align-items: center;
+    gap: 8px;
+}
+
+div#MYOBoard{
+ max-width: 50%; 
+}
+div#MYOBoard img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 1150px) {
   #breadMapContainer {
@@ -1416,6 +1492,10 @@ div#searchInputContainer.active input#searchInput {
     width: 80%;
   }
   main h1 {
+    text-wrap-mode: wrap !important;
+    font-size: 2.1rem !important;
+  }
+  #mainMYOContent h1 {
     text-wrap-mode: wrap !important;
     font-size: 2.1rem !important;
   }
@@ -1566,7 +1646,7 @@ div#searchInputContainer.active input#searchInput {
     width: 70%;
   }
   input#username{
-    width: 87%;
+    width: 100%;
     padding: 8px 15px;
   }
   #loginPanel{

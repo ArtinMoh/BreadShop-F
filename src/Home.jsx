@@ -303,6 +303,7 @@ const Home = ({ onAdd }) => {
               <div id="featured-overlay-myo">
                 <div id="featured-buttons-myo">
                   <button
+                    onClick={() => navigate("/MakeYourOwn")}
                     className="featured-buttonMore-info-myo more-info "
                     style={{
                       background:
